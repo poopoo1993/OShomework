@@ -61,9 +61,8 @@
 			exit(0);
 		}
 	}
-	do{
-		pid = waitpid(pid, &status, 0);
-	}while(pid == 0);
+		
+	waitpid(pid,&status,0);	
 	mergeSort(dividedData,data,parts);
 	printData(data);
 	//*/
