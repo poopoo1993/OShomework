@@ -57,12 +57,11 @@
 		pid = fork();
 		if (pid == 0) {
 			bubbleSort(*v);
-			printData(*v);
 			exit(0);
 		}
 	}
 		
-	waitpid(pid,&status,0);	
+		
 	mergeSort(dividedData,data,parts);
 	printData(data);
 	//*/
