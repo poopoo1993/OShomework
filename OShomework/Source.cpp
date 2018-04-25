@@ -12,7 +12,6 @@
 	bubbleSort(data);
 	printData(data);
 	*/
-	
 	/*Q2
 	string fileName;
 	openFile(fileName);
@@ -41,9 +40,8 @@
 	mergeSort(dividedData, data, parts);
 
 	printData(data);
-	
 	*/
-	
+	///*Q3
 	string fileName;
 	openFile(fileName);
 	vector <int> data;
@@ -51,18 +49,24 @@
 	vector <int> *dividedData;
 	int parts;
 	divideData(data, dividedData, parts);
-
+	int* status = 0;
+	pid_t pid;
 	for (int i = 0; i < parts; i++) {
-		pid_t pid = i;
+		vector<int> *v;
+		v = &dividedData[i];
 		pid = fork();
-		if (pid == i) {
-			bubbleSort(dividedData[i]);
-			return parts;
+		if (pid == 0) {
+			bubbleSort(*v);
+			printData(*v);
+			exit(0);
 		}
 	}
+	do{
+		pid = waitpid(pid, &status, 0);
+	}while(pid == 0);
 	mergeSort(dividedData,data,parts);
 	printData(data);
-	
+	//*/
 
 	/*Q4
 	string fileName;
@@ -81,5 +85,4 @@
 	printData(data);
 	*/
 
-	system("pause");
 }
