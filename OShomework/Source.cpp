@@ -12,6 +12,7 @@
 	bubbleSort(data);
 	printData(data);
 	*/
+
 	/*Q2
 	string fileName;
 	openFile(fileName);
@@ -41,6 +42,7 @@
 
 	printData(data);
 	*/
+
 	///*Q3
 	string fileName;
 	openFile(fileName);
@@ -50,18 +52,24 @@
 	int parts;
 	divideData(data, dividedData, parts);
 	int* status = 0;
-	pid_t pid;
+	pid_t *pid=new pid_t[parts];	
+
 	for (int i = 0; i < parts; i++) {
 		vector<int> *v;
 		v = &dividedData[i];
-		pid = fork();
-		if (pid == 0) {
+		pid[i] = fork();
+		if (pid[i] == 0) {
+			cout<<"this is child process NO."<<i+1<<"."<<endl;
 			bubbleSort(*v);
+			printData(*v);
+			write(*v,dividedData[i],sizeof(dividedData[i]));
 			exit(0);
+			
 		}
 	}
-		
-		
+
+	sleep(5);
+	
 	mergeSort(dividedData,data,parts);
 	printData(data);
 	//*/
@@ -82,5 +90,4 @@
 	mergeSort(dividedData, data, parts);
 	printData(data);
 	*/
-
 }
