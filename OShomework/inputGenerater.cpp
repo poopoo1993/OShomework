@@ -8,22 +8,25 @@ using namespace std;
 
 int main(){
 	
-	string fileName;
+	string fileName = "input";
 	int outputAmount;
 	
-	cout<<"Enter the name of output file :"<<endl;
-	cin>>fileName;
 	cout<<"Enter how many number would like to output :"<<endl;
 	cin>>outputAmount;
 	fstream fout;
-	fout.open(fileName+".txt",ios::out);
 	
-	srand(time(NULL));
-	
-	for(int i = 0; i < outputAmount; i++){
-		int randomNum = rand()%10000;
-		fout<<randomNum<<" ";
+	for(int i = 0; i < 4; i++){
+		string i_str = to_string(i+1);
+		fileName = fileName + string(i_str);
+		fout.open(fileName+".txt",ios::out);
+		srand(time(NULL));
+		fout<<i+1;
+		for(int j = 0; j < outputAmount; j++){
+			int randomNum = rand()%10000;
+			fout<<randomNum<<" ";
+		}
+		fout.close();
+		fileName = "input";
 	}
-	
-	fout.close();
+
 }

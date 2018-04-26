@@ -3,24 +3,30 @@
 #include <stdio.h>
 #include <unistd.h>
 
- int main(void) {
-	/*Q1
-	string fileName;
+ int main(void) {	
+	string fileName = "output.txt";
+	fout.open(fileName.c_str(),ios::out);
+	//Q1 start
+	fout<<"Q1 : bubble sort with single thread."<<endl;
+	fileName = "input1";
 	openFile(fileName);
 	vector <int> data;
 	readFile(data);
 	bubbleSort(data);
 	printData(data);
-	*/
+	data.clear();
+	fin.close();
+	fout<<"End of Q1"<<endl<<endl;
+	//Q1 end
 
-	/*Q2
-	string fileName;
+	//Q2 strat
+	fout<<"Q2 : bubble sort with multi-thread (here is 10) and merge."<<endl;
+	fileName = "input2";
 	openFile(fileName);
-	vector <int> data;
 	readFile(data);
 
 	vector <int> *dividedData;
-	int parts;
+	int parts = 10;
 	divideData(data, dividedData, parts);
 
 	int *rc = new int[parts];
@@ -39,11 +45,16 @@
 	}
 
 	mergeSort(dividedData, data, parts);
-
 	printData(data);
-	*/
+	data.clear();
+	for(int i = 0; i < parts; i++){
+		dividedData[i].clear();
+	}
+	fin.close();
+	fout<<"End of Q2"<<endl<<endl;
+	//Q2 end
 
-	///*Q3
+	/*Q3
 	string fileName;
 	openFile(fileName);
 	vector <int> data;
@@ -72,16 +83,13 @@
 	
 	mergeSort(dividedData,data,parts);
 	printData(data);
-	//*/
-
-	/*Q4
-	string fileName;
+	*/
+	
+	//Q4 start
+	fout<<"Q4 : divide data by 10 parts, bubble sort for each, and merge."<<endl;
+	fileName = "input4";
 	openFile(fileName);
-	vector <int> data;
 	readFile(data);
-
-	vector <int> *dividedData;
-	int parts;
 
 	divideData(data, dividedData, parts);
 	for (int i = 0; i < parts; i++) {
@@ -89,5 +97,10 @@
 	}
 	mergeSort(dividedData, data, parts);
 	printData(data);
-	*/
+	fin.close();
+	fout<<"End of Q4."<<endl<<endl;
+	//Q4 end
+
+
+	//fout execute time to output.
 }

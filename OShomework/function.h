@@ -7,10 +7,10 @@
 using namespace std;
 
 fstream fin;
+fstream fout;
 
-void openFile(string &fileName) {
-	cout << "Enter file name :" << endl;
-	getline(cin, fileName);
+
+void openFile(string fileName) {
 	fileName = fileName + ".txt";
 	fin.open(fileName.c_str(), ios::in);
 	int i;
@@ -28,7 +28,7 @@ void readFile(vector <int> &data) {
 void printData(vector <int> data) {
 
 	for (int i = 0; i < data.size(); i++) {
-		cout << data[i] << endl;
+		fout << data[i] << " ";
 	}
 
 }
@@ -49,11 +49,9 @@ void bubbleSort(vector <int> &data) {
 
 }
 
-void divideData(vector <int> data, vector <int> *&dividedData, int &parts) {
+void divideData(vector <int> data, vector <int> *&dividedData, int parts) {
 
 	int divideIndex;
-	cout << "How many parts do you want to divide?" << endl;
-	cin >> parts;
 	divideIndex = data.size() / parts;
 	dividedData = new vector<int>[parts];
 
