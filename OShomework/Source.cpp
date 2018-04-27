@@ -4,6 +4,8 @@
 #include <unistd.h> //fork
 #include <ctime> //time
 
+using namespace std;
+
  int main(void) {	
 	string fileName = "output.txt";
 	fout.open(fileName.c_str(),ios::out);
@@ -22,7 +24,7 @@
 	data.clear();
 	fin.close();
 	fout<<"End of Q1"<<endl<<endl;
-	double timeforQ1 = (stop-start) / CLOCKS_PER_SEC;
+	double timeforQ1 = (stop-start) / (double)CLOCKS_PER_SEC;
 	//Q1 end
 
 	//Q2 strat
@@ -41,9 +43,9 @@
 	start = clock();//timer start
 	for (int i = 0; i < parts; i++) {
 		rc[i] = pthread_create(&thread[i], NULL, threadFn, &dividedData[i]);
-		if (rc[i] == 0) {
+		/*if (rc[i] == 0) {
 			cout << "Thread [" << i+1 << "] is created." << endl;
-		}
+		}*/
 	}
 	
 	for (int i = 0; i < parts; i++) {
@@ -59,14 +61,14 @@
 	}
 	fin.close();
 	fout<<"End of Q2"<<endl<<endl;
-	double timeforQ2 = (stop-start) / CLOCKS_PER_SEC;
+	double timeforQ2 = (stop-start) / (double)CLOCKS_PER_SEC;
 	//Q2 end
 
-	/*Q3
-	string fileName = "input3";
+	//Q3 start
+	fout<<"Q3 : bubble sort with multi-process and merge."<<endl;
+	fileName = "input3";
 	openFile(fileName);
 	readFile(data);
-
 	divideData(data, dividedData, parts);
 	int* status = 0;
 	pid_t *pid=new pid_t[parts];	
@@ -78,10 +80,11 @@
 		if (pid[i] == 0) {
 			cout<<"this is child process NO."<<i+1<<"."<<endl;
 			bubbleSort(*v);
-			printData(*v);
-			write(*v,dividedData[i],sizeof(dividedData[i]));
+			for(int j = 0; j < v->size(); j++){
+				cout<<(*v)[j]<<" ";
+			}
+			cout<<endl;
 			exit(0);
-			
 		}
 	}
 
@@ -95,8 +98,8 @@
         }
         fin.close();
         fout<<"End of Q3"<<endl<<endl;
-        double timeforQ3 = (stop-start) / CLOCKS_PER_SEC;	
-	*/
+        double timeforQ3 = (stop-start) / (double)CLOCKS_PER_SEC;	
+	//End of Q3
 	
 	//Q4 start
 	fout<<"Q4 : divide data by 10 parts, bubble sort for each, and merge."<<endl;
@@ -114,13 +117,13 @@
 	printData(data);
 	fin.close();
 	fout<<"End of Q4."<<endl<<endl;
-	double timeforQ4 = (stop-start) / CLOCKS_PER_SEC; 
+	double timeforQ4 = (stop-start) / (double)CLOCKS_PER_SEC; 
 	//Q4 end
 
 	fout<<"Execute time :"<<endl;
 	fout<<"Q1 : "<<timeforQ1<<endl;
 	fout<<"Q2 : "<<timeforQ2<<endl;
-	//fout<<"Q3 : "<<timeforQ3<<endl;
+	fout<<"Q3 : "<<timeforQ3<<endl;
 	fout<<"Q4 : "<<timeforQ4<<endl;
 	
 }	
